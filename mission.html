@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="b">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission — Tharsos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css?v=6">
+  
+  <script>
+    try {
+      var saved = localStorage.getItem('layout');
+      if (saved === 'a' || saved === 'b') document.documentElement.setAttribute('data-layout', saved);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <button class="hamburger" id="hamburger" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="index.html" class="wordmark">THARSOS</a>
+
+      <nav class="topnav">
+        <a href="index.html">SHOP</a>
+        <a href="#" class="wip-trigger">COLLECTIONS</a>
+        <a href="mission.html" class="active-nav">MISSION</a>
+        <a href="#" class="wip-trigger clearance">CLEARANCE</a>
+      </nav>
+
+      <div class="header-right">
+        <a href="#" class="wip-trigger">CONTACT</a>
+        <a href="#" class="cart">CART (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <span class="wordmark">THARSOS</span>
+      <button class="close" id="closeSidebar">&times;</button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html">SHOP</a>
+      <a href="#" class="wip-trigger">COLLECTIONS</a>
+      <a href="mission.html">MISSION</a>
+      <a href="#" class="wip-trigger clearance">CLEARANCE</a>
+      <a href="#" class="wip-trigger">CONTACT</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    
+    <!-- THE DICTIONARY BANNER -->
+    <section class="dictionary-banner">
+      <div class="dict-inner">
+        <h1 class="dict-word">Tharsos</h1>
+        <p class="dict-pronounce">[noun] &nbsp;|&nbsp; Greek: θάρσος</p>
+        <hr class="dict-line">
+        <p class="dict-definition">Courage, confidence, boldness. A holy audacity.</p>
+      </div>
+    </section>
+
+    <!-- MISSION CONTENT -->
+    <section class="mission-text">
+      <div class="mission-inner">
+        
+        <p class="mission-intro">
+          Tharsos was founded in 2026 by two young Catholics. We founded this brand to enable other likeminded young men and women to wear their faith. We believe that the clothes you wear should reflect the reality of the soul within. In a world that demands you blend in, we build garments that give you the confidence to stand out. This is not just about looking sharp, it is about stepping into the public square with the quiet confidence of a true believer.
+        </p>
+
+        <div class="mission-item">
+          <h2>01. A Real Profession of Faith</h2>
+          <p>Our clothing is not there to display feel good quotes and meaningless slogans. It exists to be a bold, wearable, unapologetic profession of faith. When you wear Tharsos, you wear the armor of a soldier in Christ. It is a statement of belief that holds its ground in the public square, crafted with the dignity that the truth deserves. We make garments for those who are not ashamed of the Gospel.</p>
+        </div>
+
+        <div class="mission-item">
+          <h2>02. Radical Charity</h2>
+          <p>Ten percent of our profit is given away, without exception. We do not wait for a special campaign or a holiday season. That money goes directly to pro-life charities. We support the organizations that house expectant mothers, fund pregnancy care, and defend the unborn when it actually costs something. Our faith demands real action, and we put our money where our mouth is.</p>
+        </div>
+
+        <div class="mission-item">
+          <h2>03. Uncompromising Craft</h2>
+          <p>Fast fashion is built on disposability. We reject it entirely. To guarantee true authenticity and uncompromising quality, we source our garments exclusively from the highest-tier manufacturing partners available. We select premium blanks built to hold their shape through a decade of Sundays. We make pieces that outlast the trends. If we are reflecting eternal truths, our clothes should be built to last. Quality is a form of respect for the craft and the people who wear it.</p>
+        </div>
+
+        <div class="mission-item">
+          <h2>04. The Church Militant</h2>
+          <p>We exist to foster a brotherhood of young Catholics. When you wear Tharsos, you stand shoulder to shoulder with likeminded men and women fighting the good fight. We equip you to go out into the world, not to retreat from it, but to conquer it with grace. This is about being part of the Church Militant, active in the world and unafraid to defend the faith.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="wordmark">THARSOS</p>
+        <p class="footer-tag">Holy courage in wearable form.</p>
+      </div>
+      <div>
+        <h4>SHOP</h4>
+        <a href="index.html">All Products</a>
+        <a href="#" class="wip-trigger">Collections</a>
+        <a href="#" class="wip-trigger clearance-text">Clearance</a>
+      </div>
+      <div>
+        <h4>HOUSE</h4>
+        <a href="mission.html">Mission</a>
+        <a href="#" class="wip-trigger">Craftsmanship</a>
+      </div>
+      <div>
+        <h4>CONNECT</h4>
+        <a href="#" class="wip-trigger">Instagram</a>
+        <a href="#" class="wip-trigger">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Tharsos. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#" class="wip-trigger">Privacy Policy</a>
+        <a href="#" class="wip-trigger">Terms of Service</a>
+        <a href="#" class="wip-trigger">Impressum</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WIP BANNER -->
+  <div class="wip-banner" id="wipBanner">
+    <div class="wip-content">
+      <h2>Work in Progress</h2>
+      <p>This section is currently under construction. Check back soon.</p>
+      <button class="btn btn-ghost" id="closeWip">Return to site</button>
+    </div>
+  </div>
+
+  <!-- LAYOUT TOGGLE -->
+  <div class="toggle">
+    <p class="toggle-label">Nav layout</p>
+    <div class="toggle-btns">
+      <button type="button" data-layout="a">A</button>
+      <button type="button" data-layout="b">B</button>
+    </div>
+  </div>
+
+  <script type="module" src="script.js?v=6"></script>
+</body>
+</html>
