@@ -560,6 +560,85 @@ p {
 }
 
 /* =========================================================
+   PRODUCT DETAIL PAGE (PDP)
+   ========================================================= */
+.pdp-main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px 32px;
+}
+
+.pdp-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.pdp-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.pdp-info h1 {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.pdp-price {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 32px;
+  color: var(--text);
+}
+
+.pdp-details {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  margin-bottom: 32px;
+}
+
+.pdp-details p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.pdp-action h3 {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.size-selector {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.size-btn {
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.size-btn:hover {
+  border-color: var(--text);
+}
+
+.size-btn.active {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+}
+
+/* =========================================================
    RESPONSIVE RULES
    ========================================================= */
 .hamburger { display: flex; }
@@ -581,6 +660,11 @@ p {
   
   .dict-word { font-size: 8rem; }
   .dict-definition { font-size: 2.5rem; }
+  
+  .pdp-container {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
 }
 
 @media (min-width: 1024px) {
