@@ -32,6 +32,7 @@ if (productGrid) {
 
     snapshot.forEach((doc) => {
       const product = doc.data();
+      const docId = doc.id; // Get the Firestore Document ID for the link
       
       // Sale Price Logic
       let priceHTML = `$${product.price}`;
@@ -40,50 +41,52 @@ if (productGrid) {
       }
 
       // Pre-order Logic
-      let buttonText = product.status === 'preorder' ? 'Pre-Order' : 'Add to cart';
+      let buttonText = product.status === 'preorder' ? 'Pre-Order' : 'View Item';
       let badgeHTML = product.status === 'preorder' ? `<span style="display: inline-block; background: var(--text); color: #fff; font-size: 0.65rem; padding: 2px 6px; margin-bottom: 8px; letter-spacing: 0.1em;">PRE-ORDER</span>` : '';
 
       const productCard = document.createElement('article');
       productCard.className = 'product';
+      
+      // Wrap image, title, and button in links to the new product.html page
       productCard.innerHTML = `
-        <div class="img-ph img-ph-product" style="position: relative; overflow: hidden;">
-          <img src="${product.image_url}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 2;">
-        </div>
+        <a href="product.html?id=${docId}" style="display: block; margin-bottom: 24px;">
+          <div class="img-ph img-ph-product" style="position: relative; overflow: hidden; margin-bottom: 0;">
+            <img src="${product.image_url}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 2;">
+          </div>
+        </a>
         <div style="margin-bottom: 12px; min-height: 20px;">${badgeHTML}</div>
-        <h3>${product.name}</h3>
+        
+        <a href="product.html?id=${docId}">
+          <h3>${product.name}</h3>
+        </a>
+        
         <p class="desc">${product.description}</p>
         <p class="price">${priceHTML}</p>
-        <button class="btn btn-solid btn-full add-to-cart-btn" data-name="${product.name}">${buttonText}</button>
+        <a href="product.html?id=${docId}" class="btn btn-solid btn-full" style="text-align: center;">${buttonText}</a>
       `;
       
       productGrid.appendChild(productCard);
     });
   });
-
-  // Cart Logic (Event Delegation)
-  const cartCountEl = document.getElementById('cartCount');
-  let cartCount = 0;
-
-  productGrid.addEventListener('click', (e) => {
-    if (e.target.classList.contains('add-to-cart-btn')) {
-      const btn = e.target;
-      cartCount++;
-      if (cartCountEl) cartCountEl.innerText = cartCount;
-      
-      const originalText = btn.innerText;
-      btn.innerText = 'Added';
-      btn.disabled = true;
-      
-      setTimeout(() => {
-        btn.innerText = originalText;
-        btn.disabled = false;
-      }, 1200);
-    }
-  });
 }
 
 // ==========================================
-// 3. LAYOUT TOGGLE LOGIC (A vs B)
+// 3. CART COUNTER (Reads from LocalStorage)
+// ==========================================
+const cartCountEl = document.getElementById('cartCount');
+
+function updateCartCount() {
+  if (cartCountEl) {
+    const cart = JSON.parse(localStorage.getItem('tharsos_cart')) || [];
+    cartCountEl.innerText = cart.length;
+  }
+}
+
+// Update on page load
+updateCartCount();
+
+// ==========================================
+// 4. LAYOUT TOGGLE LOGIC (A vs B)
 // ==========================================
 const layoutButtons = document.querySelectorAll('[data-layout]');
 
@@ -101,7 +104,7 @@ layoutButtons.forEach(btn => {
 });
 
 // ==========================================
-// 4. SIDEBAR & WIP LOGIC
+// 5. SIDEBAR & WIP LOGIC
 // ==========================================
 const hamburger = document.getElementById('hamburger');
 const sidebar = document.getElementById('sidebar');
@@ -155,7 +158,7 @@ if (closeWipBtn) {
 }
 
 // ==========================================
-// 5. INITIALIZE LAYOUT
+// 6. INITIALIZE LAYOUT
 // ==========================================
 let saved = 'b';
 try { saved = localStorage.getItem('layout') || 'b'; } catch (e) {}
