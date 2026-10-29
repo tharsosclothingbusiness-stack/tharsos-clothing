@@ -1,14 +1,34 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-const firebaseConfig = { /* YOUR CONFIG */ apiKey: "AIzaSyAKYHT7H2fiixbgrvadNEj10yz5HlIEI1U", authDomain: "tharsos-af07d.firebaseapp.com", projectId: "tharsos-af07d", storageBucket: "tharsos-af07d.firebasestorage.app", messagingSenderId: "229266745261", appId: "1:229266745261:web:57b90fc331b098f1bda324" };
+const firebaseConfig = {
+  apiKey: "AIzaSyAKYHT7H2fiixbgrvadNEj10yz5HlIEI1U",
+  authDomain: "tharsos-af07d.firebaseapp.com",
+  projectId: "tharsos-af07d",
+  storageBucket: "tharsos-af07d.firebasestorage.app",
+  messagingSenderId: "229266745261",
+  appId: "1:229266745261:web:57b90fc331b098f1bda324"
+};
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 let allProducts = [];
 let collectionsData = {};
 
-// 1. Fetch Settings & Hero
+// 1. Cookie Banner Logic
+const cookieBanner = document.getElementById('cookieBanner');
+const acceptCookiesBtn = document.getElementById('acceptCookies');
+if (!localStorage.getItem('tharsos_cookie_consent') && cookieBanner) {
+  setTimeout(() => cookieBanner.classList.add('show'), 1000);
+}
+if (acceptCookiesBtn) {
+  acceptCookiesBtn.addEventListener('click', () => {
+    localStorage.setItem('tharsos_cookie_consent', 'true');
+    cookieBanner.classList.remove('show');
+  });
+}
+
+// 2. Fetch Settings & Hero
 onSnapshot(doc(db, "config", "site"), (docSnap) => {
   if (docSnap.exists()) {
     const data = docSnap.data();
@@ -20,26 +40,21 @@ onSnapshot(doc(db, "config", "site"), (docSnap) => {
     const heroBtn = document.getElementById('hero-btn-text');
 
     if (data.heroType === 'collection' && data.heroCollection) {
-      // Find collection banner
       const col = collectionsData[data.heroCollection];
-      if (col && col.banner_image) {
-        heroBg.innerHTML = `<img src="${col.banner_image}" style="width: 100%; height: 100%; object-fit: cover;">`;
-      }
+      if (col && col.banner_image) heroBg.innerHTML = `<img src="${col.banner_image}" style="width: 100%; height: 100%; object-fit: cover;">`;
       if (data.heroTitle) heroTitle.innerHTML = data.heroTitle.replace(/\n/g, '<br>');
       if (data.heroBtn) heroBtn.innerText = data.heroBtn;
     } else if (data.carouselImages && data.carouselImages.length > 0) {
-      // Fallback to carousel
       heroBg.innerHTML = `<img src="${data.carouselImages[0]}" style="width: 100%; height: 100%; object-fit: cover;">`;
     }
   }
 });
 
-// Fetch collections for the hero fallback
 onSnapshot(collection(db, "collections"), (snapshot) => {
   snapshot.forEach(d => { collectionsData[d.data().name] = d.data(); });
 });
 
-// 2. Fetch Products
+// 3. Fetch Products
 const bestsellersGrid = document.getElementById('bestsellers-grid');
 const allProductsGrid = document.getElementById('all-products-grid');
 
@@ -60,11 +75,8 @@ function renderProducts(products) {
 
   products.forEach(product => {
     const docId = product.id;
-    
-    // Price Logic
     let priceHTML = `$${product.price}`;
     if (product.sale_price) priceHTML = `<span style="text-decoration: line-through; color: var(--muted); margin-right: 8px; font-size: 0.9em;">$${product.price}</span> <span style="color: var(--red); font-weight: 600;">$${product.sale_price}</span>`;
-    
     let buttonText = product.status === 'preorder' ? 'Pre-Order' : 'View Item';
     let badgeHTML = product.status === 'preorder' ? `<span style="display: inline-block; background: var(--text); color: #fff; font-size: 0.65rem; padding: 2px 6px; margin-bottom: 8px; letter-spacing: 0.1em;">PRE-ORDER</span>` : '';
 
@@ -82,23 +94,21 @@ function renderProducts(products) {
       <p class="price">${priceHTML}</p>
       <a href="product.html?id=${docId}" class="btn btn-solid btn-full" style="text-align: center;">${buttonText}</a>
     `;
-    
-    // Sort into Bestsellers or All Products
     if (product.isBestseller) bestsellersGrid.appendChild(productCard.cloneNode(true));
     allProductsGrid.appendChild(productCard);
   });
 }
 
-// 3. Search Logic
+// 4. Search Logic
 document.getElementById('searchInput').addEventListener('input', (e) => {
   const term = e.target.value.toLowerCase();
   const filtered = allProducts.filter(p => p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term));
-  renderProducts(filtered); // Note: this will also filter the bestsellers which is fine, but you can adjust if needed
+  renderProducts(filtered);
   if(term) document.getElementById('bestsellers').style.display = 'none';
   else document.getElementById('bestsellers').style.display = 'block';
 });
 
-// Cart & Sidebar (Standard)
+// 5. Standard UI Logic
 const updateCartCount = () => { const el = document.getElementById('cartCount'); if(el) el.innerText = (JSON.parse(localStorage.getItem('tharsos_cart')) || []).length; };
 updateCartCount();
 const hamburger = document.getElementById('hamburger'), sidebar = document.getElementById('sidebar'), overlay = document.getElementById('overlay'), closeBtn = document.getElementById('closeSidebar'), body = document.body;
