@@ -7,12 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
   <header class="header">
     <div class="header-inner">
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation"><span></span><span></span><span></span></button>
       <a href="index.html" class="wordmark">THARSOS</a>
       <nav class="topnav">
         <a href="index.html" class="active-nav">SHOP</a>
@@ -40,7 +40,6 @@
   </aside>
 
   <main>
-    <!-- DYNAMIC HERO -->
     <section class="shop-hero" id="hero-section">
       <div class="img-ph shop-hero-bg" id="hero-bg">
         <span>Campaign Image / Carousel</span>
@@ -51,7 +50,6 @@
       </div>
     </section>
 
-    <!-- BESTSELLERS -->
     <section class="bestsellers" id="bestsellers">
       <div class="section-head"><h2>Bestsellers</h2></div>
       <div class="grid" id="bestsellers-grid">
@@ -59,11 +57,10 @@
       </div>
     </section>
 
-    <!-- ALL PRODUCTS + SEARCH -->
     <section class="bestsellers" id="all-products" style="padding-top: 0;">
       <div class="section-head" style="display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 24px; text-align: left; border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 48px;">
         <h2>All Products</h2>
-        <input type="text" id="searchInput" placeholder="Search..." style="padding: 12px 16px; border: 1px solid var(--border); font-family: var(--font-body); font-size: 1rem; width: 100%; max-width: 300px; outline: none;">
+        <input type="text" id="searchInput" placeholder="Search...">
       </div>
       <div class="grid" id="all-products-grid"></div>
     </section>
@@ -76,27 +73,29 @@
       <div><h4>HOUSE</h4><a href="mission.html">Mission</a><a href="#" class="wip-trigger">Craftsmanship</a></div>
       <div>
         <h4>CONNECT</h4>
-        <!-- SOCIAL SVGS -->
         <div style="display: flex; gap: 16px; margin-top: 12px;">
-          <a href="#" class="wip-trigger" aria-label="Instagram">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-          </a>
-          <a href="#" class="wip-trigger" aria-label="X (Twitter)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="#" class="wip-trigger" aria-label="Pinterest">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a4 4 0 1 0 8 0 4 4 0 1 0-8 0"></path><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20"></path><path d="M12 12v10"></path></svg>
-          </a>
+          <a href="#" class="wip-trigger" aria-label="Instagram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+          <a href="#" class="wip-trigger" aria-label="X (Twitter)"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" class="wip-trigger" aria-label="Pinterest"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a4 4 0 1 0 8 0 4 4 0 1 0-8 0"></path><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20"></path><path d="M12 12v10"></path></svg></a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 Tharsos. All rights reserved.</p>
-      <div class="footer-legal"><a href="#" class="wip-trigger">Privacy</a><a href="#" class="wip-trigger">Terms</a><a href="#" class="wip-trigger">Impressum</a></div>
+      <div class="footer-legal">
+        <a href="legal.html#privacy">Privacy</a>
+        <a href="legal.html#terms">Terms</a>
+        <a href="legal.html#impressum">Impressum</a>
+      </div>
     </div>
   </footer>
 
+  <div class="cookie-banner" id="cookieBanner">
+    <p>We use cookies to enhance your experience. By clicking "Accept", you agree to our use of cookies. <a href="legal.html#privacy">Read our Privacy Policy</a>.</p>
+    <button id="acceptCookies" class="btn btn-solid">Accept</button>
+  </div>
+
   <div class="wip-banner" id="wipBanner"><div class="wip-content"><h2>Work in Progress</h2><p>This section is under construction.</p><button class="btn btn-ghost" id="closeWip">Return</button></div></div>
-  <script type="module" src="script.js?v=13"></script>
+  <script type="module" src="script.js?v=14"></script>
 </body>
 </html>
